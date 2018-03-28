@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quote generator</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+<meta charset="UTF-8">
+</head>
+<body>
+<div>
+<h1>Quote generator</h1></div>
+<form>
+<form action="">
+<h3>Please select which type of quotes do you want</h3>
+  <input type="radio" id="life" name="type" value="life" checked>Life<br>
+  <input type="radio" id="love" name="type" value="love">Love<br>
+</form>
+<h3>Please select how many quotes do you want</h3>
+ <input type="radio" id="one" name="number" value="one" checked>1<br>
+ <input type="radio" id="two" name="number" value="two">2<br>
+ <input type="radio" id="three" name="number" value="three">3<br>
+ <input type="radio" id="four" name="number" value="four">4<br>
+ <input type="radio" id="five" name="number" value="five">5<br>
+</form><br>
+<button onclick="confirm()">Confirm</button>
+<button onclick="newQuote()">New Quote</button>
+<p id="selector"></p>
+<div id="quote1"></div>
+<div id="quote2"></div>
+<div id="quote3"></div>
+<div id="quote4"></div>
+<div id="quote5"></div></br>
+<script src="step_two.js"></script>
+<button onclick="quit()">Quit</button>
+<button onclick="refresh()">Refresh</button>
+</body>
+</html>
