@@ -1,6 +1,5 @@
-
-
-var life_beginning = ["Time means a lot to me because, you see, I, too, am also a learner and am often lost in the joy of forever developing and simplifying.",
+var life_beginning = [
+"Time means a lot to me because, you see, I, too, am also a learner and am often lost in the joy of forever developing and simplifying.",
 "Life is like playing a violin in public",
 "Lighten up, just enjoy life, smile more, laugh more,",
 "What lies behind you and what lies in front of you,",
@@ -9,7 +8,8 @@ var life_beginning = ["Time means a lot to me because, you see, I, too, am also 
 "Our life is frittered away by detail.",
 "Life is what happens to",
 "I may not have gone where I intended",
-"Sometimes the questions"]
+"Sometimes the questions"
+]
 
 var life_middle = ["If you love life, don’t waste time, for time is what life is made up of.",
 " and learning the instrument as one goes on.",
@@ -22,61 +22,61 @@ var life_middle = ["If you love life, don’t waste time, for time is what life 
 " to go, but I think I have ended up where I needed to be.",
 " are complicated and the answers are simple."]
 
-var life_end = [" ~ Bruce Lee",
-" ~ Samuel Butler",
- " ~ Kenneth Branagh",
-" ~ Ralph Waldo Emerson",
-" ~ Bob Marley",
-" ~ Mae West",
-" ~ Henry David Thoreau",
-" ~ Allen Saunders",
-" ~ Douglas Adams",
-" ~ Dr. Seuss"]
+var life_end = ["Bruce Lee",
+"Samuel Butler",
+"Kenneth Branagh",
+"Ralph Waldo Emerson",
+"Bob Marley",
+"Mae West",
+"Henry David Thoreau",
+"Allen Saunders",
+"Douglas Adams",
+"Dr. Seuss"]
 
-var love_beginning = ["Men always want to be a woman's",
-"Throw your dreams into space like a kite, and you do not know",
-"I'm really proud to be Filipino. Filipinos are",
-"Some think love can be measured by the amount of butterflies in their tummy. Others think love can be",
+var love_beginning = ["If you love two people at the same time, choose the second.",
+"You know you're in love when you can't fall asleep because",
+"It is better to be hated for what you are",
+"It is not a lack of love, but a lack of friendship",
 "I would love to be a father. I had a great father who taught me how",
 "In the end, the love you",
 "Grief is the price",
 "We waste time looking for the",
 "True love comes quietly, without banners or",
-"There is only one happiness",
+"Love is that condition in which the happiness",
 "A friend is someone who",
 "It is better to be hated for",
-"It is not a lack of love,",
+"Being deeply loved by someone gives you strength,",
 "Love all, trust a"]
 
-var love_middle = [" first love - women like to be a man's last romance.",
-" what it will bring back, a new life, a new friend, a new love, a new country.",
-" really supportive, and I want to thank all of them. I love them!",
-" sured in bunches of flowers, or by using the words 'for ever.' But love can only truly be measured by actions. It can be a small thing, such as peeling an orange for a person you love because you know they don't like doing it.",
+var love_middle = [" Because if you really loved the first one, you wouldn’t have fallen for the second.",
+" reality is finally better than your dreams.",
+" than to be loved for what you are not.",
+" that makes unhappy marriages.",
 " gratifying that is. I'm not going to deny myself that. I think I'd be good at it. Everybody wants that experience. I definitely do.",
 " take is equal to the love you make.",
 " we pay for love.",
 " perfect lover, instead of creating the perfect love.",
 " flashing lights. If you hear bells, get your ears checked.",
-" in this life, to love and be loved.",
+" of another person is essential to your own.",
 " knows all about you and still loves you.",
 " what you are than to be loved for what you are not.",
-" but a lack of friendship that makes unhappy marriages.",
+" while loving someone deeply gives you courage.",
 " few, do wrong to none."]
 
-var love_end = [" ~ Oscar Wilde",
-" ~ Anais Nin",
-" ~ Charice Pempengco",
-" ~ Marian Keyes",
-" ~ Mike Myers",
-" ~ Paul McCartney",
-" ~ Queen Elizabeth II",
-" ~ Tom Robbins",
-" ~ Erich Segal",
-" ~ George Sand",
-" ~ Elbert Hubbard",
-" ~ André Gide",
-" ~ Friedrich Nietzsche",
-" ~ William Shakespeare"]
+var love_end = [" ~ Johnny Depp",
+"Dr. Seuss",
+"André Gide",
+"Friedrich Nietzsche",
+"Mike Myers",
+"Paul McCartney",
+"Queen Elizabeth II",
+"Tom Robbins",
+"Erich Segal",
+"Robert A. Heinlein",
+"Elbert Hubbard",
+"André Gide",
+"Lao Tzu",
+"William Shakespeare"]
 
 function generateQuotes(_category, _count) {
 	var rand = _category === 'life' ? Math.floor(Math.random() * (life_beginning.length)) : Math.floor(Math.random() * (love_beginning.length));
@@ -87,20 +87,12 @@ function generateQuotes(_category, _count) {
 		}
 
 		var id = "quote" + i;
-		document.getElementById(id).setAttribute('class', 'blockquote');
-		document.getElementById(id).innerHTML = _category === 'life' ? life_beginning [rand] + life_middle [rand] + life_end[rand] : love_beginning [rand] + love_middle [rand] + love_end[rand];
+		document.getElementById(id).innerHTML = _category === 'life' ? "<blockquote>" + life_beginning [rand] + life_middle [rand] + "<small>" + life_end[rand] + "</small></blockquote>" : "<blockquote>" + love_beginning [rand] + love_middle [rand] + "<small>" +  love_end[rand] + "</small></blockquote>";
 		indexesUsed.push(rand);
 	}
 }
 
-function newQuote(){
-	var category = document.getElementById("category");
-	var count = document.getElementById("count");
-
-	generateQuotes(category.options[category.selectedIndex].value, count.options[count.selectedIndex].value);
-}
-
-function confirm(){
+function confirm() {
 	var a = "quote";
 	var b = "quotes";
 	var c;
@@ -115,11 +107,23 @@ function confirm(){
 		var c = b;
 	}
 
-	document.getElementById("selector").innerHTML = "You have selected " + number_value + " " + type_value + " " + c + ".";
+	if (isNaN(number_value) || type_value === "Select the qoute theme") {
+	  document.getElementById("selector").innerHTML = "Please select the quote theme and the wished amount!";
+  } else {
+		document.getElementById("selector").innerHTML = "You have selected " + number_value + " " + type_value + " " + c + ".";
+	}
+}
 
+function newQuote(){
+
+	var category = document.getElementById("category");
+	var count = document.getElementById("count");
+
+	generateQuotes(category.options[category.selectedIndex].value, count.options[count.selectedIndex].value);
 }
 
 function quit() {
+	window.open('', '_self', '');
 	window.close();
 }
 
