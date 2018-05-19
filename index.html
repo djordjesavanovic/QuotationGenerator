@@ -1,37 +1,95 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Quote generator</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
-<meta charset="UTF-8">
-</head>
-<body>
-<div>
-<h1>Quote generator</h1></div>
-<form>
-<form action="">
-<h3>Please select which type of quotes do you want</h3>
-  <input type="radio" id="life" name="type" value="life" checked>Life<br>
-  <input type="radio" id="love" name="type" value="love">Love<br>
-</form>
-<h3>Please select how many quotes do you want</h3>
- <input type="radio" id="one" name="number" value="one" checked>1<br>
- <input type="radio" id="two" name="number" value="two">2<br>
- <input type="radio" id="three" name="number" value="three">3<br>
- <input type="radio" id="four" name="number" value="four">4<br>
- <input type="radio" id="five" name="number" value="five">5<br>
-</form><br>
-<button onclick="confirm()">Confirm</button>
-<button onclick="newQuote()">New Quote</button>
-<p id="selector"></p>
-<div id="quote1"></div>
-<div id="quote2"></div>
-<div id="quote3"></div>
-<div id="quote4"></div>
-<div id="quote5"></div></br>
-<script src="step_two.js"></script>
-<button onclick="quit()">Quit</button>
-<button onclick="refresh()">Refresh</button>
-</body>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Quotation Generator - OpenClassrooms">
+    <meta name="author" content="Djordje Savanovic">
+
+    <title>Quotation Generator</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <main role="main" class="container">
+
+      <div class="row">
+        <div class="well">
+          <h2>Quote generator</h2>
+          <p>
+            Created by: Djordje Savanovic
+          </p>
+        </div>
+      </div>
+
+      <div class="row well">
+        <form>
+        <div class="col-md-6">
+          <form action="">
+            <h3>Select the qoute theme</h3>
+              <div class="form-group">
+                <select class="form-control" id="category">
+                  <option id="life" name="type" value="life" selected>Life</option>
+                  <option id="love" name="type" value="love">Love</option>
+                </select>
+              </div>
+          </form>
+        </div>
+
+        <div class="col-md-6">
+           <h3>Select the amount of quotes</h3>
+             <div class="form-group">
+               <select class="form-control" id="count">
+                 <option id="one" name="number" value="1" selected>1</option>
+                 <option id="two" name="number" value="2">2</option>
+                 <option id="three" name="number" value="3">3</option>
+                 <option id="four" name="number" value="4">4</option>
+                 <option id="five" name="number" value="5">5</option>
+               </select>
+             </div>
+        </div>
+        </form>
+
+             <div class="col-xs-12">
+               <button onclick="confirm()"class="btn btn-default">Confirm</button>
+               <button onclick="newQuote()" class="btn btn-default">Generate</button>
+             </div>
+
+       </div>
+
+
+
+
+      <div class="row quotes well" id="quotes">
+          <div class="col-xs-12">
+            <h3 class="center">Random quotes</h3>
+            <div id="selector"></div>
+            <div id="quote1"></div>
+            <div id="quote2"></div>
+            <div id="quote3"></div>
+            <div id="quote4"></div>
+            <div id="quote5"></div>
+          </div>
+      </div>
+
+      <div class="row well-sm">
+          <div class="col-xs-6">
+            <button onclick="quit()" class="btn btn-default btn-block">Quit</button>
+          </div>
+          <div class="col-xs-6">
+            <button onclick="refresh()" class="btn btn-default btn-block">Refresh</button>
+          </div>
+      </div>
+
+    </main>
+
+  </body>
+
+  <script src="generator.js"></script>
 </html>
