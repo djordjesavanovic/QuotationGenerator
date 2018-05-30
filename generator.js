@@ -1,3 +1,7 @@
+// Arrays containing qoute fragments
+
+// Life quotes
+
 var life_beginning = [
 "Time means a lot to me because, you see, I, too, am also a learner and am often lost in the joy of forever developing and simplifying.",
 "Life is like playing a violin in public",
@@ -32,6 +36,8 @@ var life_end = ["Bruce Lee",
 "Allen Saunders",
 "Douglas Adams",
 "Dr. Seuss"]
+
+// Love quotes
 
 var love_beginning = ["If you love two people at the same time, choose the second.",
 "You know you're in love when you can't fall asleep because",
@@ -78,20 +84,36 @@ var love_end = [" ~ Johnny Depp",
 "Lao Tzu",
 "William Shakespeare"]
 
+// Method which generates quotes, based on the provided category and amount
 function generateQuotes(_category, _count) {
+
+	// Creating a random index
 	var rand = _category === 'life' ? Math.floor(Math.random() * (life_beginning.length)) : Math.floor(Math.random() * (love_beginning.length));
+
+	// Defining a variable, which is used for storing the used indexes
 	var indexesUsed = [];
+
+	// For loop, used to print the quotes
 	for(var i = 1; i <= _count; i++) {
+		// Check if the generated rand is in the indexesUsed array
+		// if it is already in the array, generate another rand.
 		while(indexesUsed.indexOf(rand) !== -1) {
 			rand = _category === 'life' ? Math.floor(Math.random() * (life_beginning.length)) : Math.floor(Math.random() * (love_beginning.length));
 		}
 
+		// Used for recognition of elemnt IDs in HTML
 		var id = "quote" + i;
+
+		// Actual printing of the quotes
+		// It finds the element's ID and prints out a quote (based on the entered parameters) inside the HTML element
 		document.getElementById(id).innerHTML = _category === 'life' ? "<blockquote>" + life_beginning [rand] + life_middle [rand] + "<small>" + life_end[rand] + "</small></blockquote>" : "<blockquote>" + love_beginning [rand] + love_middle [rand] + "<small>" +  love_end[rand] + "</small></blockquote>";
+
+		// This function call inserts the last used index in the indexesUsed array
 		indexesUsed.push(rand);
 	}
 }
 
+// This functions prints out the selected theme and the amount for the quotes
 function confirm() {
 	var a = "quote";
 	var b = "quotes";
@@ -109,11 +131,12 @@ function confirm() {
 
 	if (isNaN(number_value) || type_value === "Select the qoute theme") {
 	  document.getElementById("selector").innerHTML = "Please select the quote theme and the wished amount!";
-  } else {
+  	} else {
 		document.getElementById("selector").innerHTML = "You have selected " + number_value + " " + type_value + " " + c + ".";
 	}
 }
 
+// Method which gathers the parameters and calls the generateQuotes method
 function newQuote(){
 
 	var category = document.getElementById("category");
@@ -122,11 +145,13 @@ function newQuote(){
 	generateQuotes(category.options[category.selectedIndex].value, count.options[count.selectedIndex].value);
 }
 
+// Closes the program, i.e. the browser tab
 function quit() {
 	window.open('', '_self', '');
 	window.close();
 }
 
+// Refreshes the program, i.e. the browser tab
 function refresh(){
 	window.location.reload();
 }
